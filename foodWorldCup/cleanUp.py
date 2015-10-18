@@ -1,33 +1,24 @@
-DATA = 	"./food-world-cup-data.csv"
-OUTPUT = './pythonCleaned.csv'
-HEADER = './header.csv'
-cleanData = open(OUTPUT, 'w')
-#writing column headers
-with open(HEADER) as fileobj:
-	for line in fileobj:
-		headers = line.split(',')
-		i = 0
-		for col in headers:
-			if "Please rate how much you like the traditional cuisine of" in col:
-				col = col.rsplit(None, 1)[-1][:-1]
-			i += 1
-			if i < 48:
-				cleanData.write(col + ",")
-			else:
-				cleanData.write(col + "\n")
-#let's write the data now
-with open(DATA) as fileobj:
-	for word in fileobj:
-		row = word.split(',')
-		i = 0
-		for cell in row:
-			i+=1
-			if i > 48:
-				i = 0
-				cleanData.write(cell + "\n")
-			else:
-				cleanData.write(cell + ",")
+import csv
+DATA = 	"./data/food-world-cup-data.csv"
+OUTPUT = './data/pythonCleaned.csv'
+HEADER = './data/header.csv'
+with open(OUTPUT, 'wb') as outfile:
+	writer = csv.writer(outfile)
 
-cleanData.close()
+	#writing column headers
+	with open(HEADER, 'rU') as infile:
+		reader = csv.reader(infile)
+		headerList = []
+		for row in reader:
+			for col in row:
+				if "Please rate how much you like the traditional cuisine of" in col:
+					headerList.append(col.rsplit(None, 1)[-1][:-1])
+				else:
+					headerList.append(col)
+		writer.writerow(headerList)	
 
-		
+	#writing column data
+	with open(DATA, 'rU') as infile:
+		reader = csv.reader(infile)
+		for row in reader:
+			writer.writerow(row)
