@@ -7,14 +7,15 @@ Clean up
 "Please rate how much you like the traditional cuisine of (name).""
 							to
 "(name)"
-and so on. The second and third column names are shortened as following:
-#  1RespondentID
-#  2degree of culinary skills 
-#  3degree of interest
-#  4Please rate how much you like the traditional cuisine of Algeria:
-#  5Please rate how much you like the traditional cuisine of Argentina.  
-#  ...																	    
-#  "end of the column; length of the column: 48"
-There are 48 columns. So I will output csv with 48 columns with the subsequent data attached to the respective column
+and so on. column names are shortened as following:
 
+RespondentID
+degree of culinary skills 
+degree of interest
+Algeria
+Argentina  
+...																	    
+"end of the column; length of the column: 48"
+
+There are 48 columns. So I will output csv with 48 columns with the subsequent data attached to the respective column
 with pythonCleaner.csv, the data is cleaned up and is ready for R visualisation!
