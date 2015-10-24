@@ -6,7 +6,7 @@ Hello world! this is my sample data analysis. Data is from fivethirtyeight.com. 
 
 <h2>Python Cleaner</h2>
 Python cleaner reads in the file, changes the each column's header question for the country cuisine to simply the country name. <br>
-<center>"Please rate how much you like the traditional cuisine of (name)." => "(name)"</center><br>
+<center>"Please rate how much you like the traditional cuisine of (name)." => "(name)"</center><br><br>
 There are 48 columns. I delete the respondent ID, So I will output csv with 47 columns with the subsequent data attached to the respective column
 with cleanUp.csv.
 
@@ -21,5 +21,11 @@ exhibits an obvious inverse relationship. The more reknown the cuisine is, the h
 <h4>Jitter graph (mean score) of n = 1282</h4>
 The above graph shows that if we weight the total score by the number of respondents, the cuisines such as English, German, and Russian slide to the left. This is because even though Americans are rather familiar with these cuisines, they are also known to be less tasty cuisines compared to the likes of Mexican, Chinese, and Italian. The countries that stay in bottom_right corner in this graph as well are the cuisines that we may have guessed: Japanese, Greek, French, Chinese, Mexican, Italian, followed by lesser-known, yet equally high-scoring Thai and Spanish cuisines.
 
-
-
+<h2>Segmentation</h2>
+The countries named above are the most popular when we use the entire data. I'm curious if this would change if we segment the population with three different dimensions: income, culinary skills, and knowledge. All these are self-reported, so I'm not sure what to expect.
+<h3>The connoisseurs</h3>
+<img src = "./img/con_raw.png">
+<h4>Jitter graph of n = 180</h4>
+<img src = "./img/con_mean.png">
+<h4>Jitter graph (mean score) of n = 180</h4>
+The data consist of 180 respondents who reported the highest("Advanced" in data) culinary knowledge.
