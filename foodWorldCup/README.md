@@ -29,7 +29,9 @@ The countries named above are the most popular when we use the entire data. I'm 
 <img src = "./img/con_av.png">
 <h4>Jitter graph of mean score, n = 180</h4>
 The data consist of 180 respondents who reported the highest(shown as "Advanced") culinary knowledge. We observe that, first, the unweighted total score graph above shows that the concavity that was observed when we ploted the whole data(n = 1282) has more or less disappeared. This is because in this segmented data, connoisseurs tend to know and give normally distributed scores to relatively obscure cuisines, bringing down the lesser-known cuisines collection to the right-down direction. The relationship between the unknownness and totalScore is virtually linear. Here again, English and Irish cuisines are the glaring underperformers. <br><br>
-The average graph, on the other hand, reveals that the spread is wider than that of total mean score. It's interesting that the clear underperformers that are placed well within the mainstream belt are the expected ones: English, Irish, German, and Russian. These are all cold countries where the lack of variety of ingredients have been wanting for much of human history up to modernity.
+The average graph, on the other hand, reveals that the spread is wider than that of total mean score. It's interesting that the clear underperformers that are placed well within the mainstream belt are the expected ones: English, Irish, German, and Russian. These are all cold countries where the lack of variety of ingredients have been wanting for much of human history up to modernity. <br><br>
+
+Here are the other two segmentations, by income bracket and culinary skills. The general observations are the same in a sense that the obvious underperformers and outliers are more or less the same cuisines.
 <h3>The Rich</h3>
 <img src = "./img/rich_raw.png">
 <h4>Jitter graph total score, n = 286</h4>
@@ -40,3 +42,5 @@ The average graph, on the other hand, reveals that the spread is wider than that
 <h4>Jitter graph total score, n = 408</h4>
 <img src = "./img/rich_av.png">
 <h4>Jitter graph of mean score, n = 408</h4>
+
+for more information, email me at sunghoonyang@berkeley.edu
