@@ -1,8 +1,8 @@
 <h1>Food World Cup</h1>
-Hello world! this is my sample data analysis. Data is from fivethirtyeight.com. This analysis covers 3 actions
-1. Data cleaning
-2. Segmentation
-3. Visualisation
+Hello world! this is my sample data analysis. Data is from fivethirtyeight.com. This analysis covers 3 actions <br>
+1. Data cleaning <br>
+2. Segmentation <br>
+3. Visualisation <br>
 
 <h2>Python Cleaner</h2>
 Python cleaner reads in the file, changes the each column's header question for the country cuisine to simply the country name. <br>
