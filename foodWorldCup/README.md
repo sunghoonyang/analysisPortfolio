@@ -26,6 +26,6 @@ The countries named above are the most popular when we use the entire data. I'm 
 <h3>The connoisseurs</h3>
 <img src = "./img/con_raw.png">
 <h4>Jitter graph of n = 180</h4>
-<img src = "./img/con_mean.png">
+<img src = "./img/con_av.png">
 <h4>Jitter graph (mean score) of n = 180</h4>
 The data consist of 180 respondents who reported the highest("Advanced" in data) culinary knowledge.
