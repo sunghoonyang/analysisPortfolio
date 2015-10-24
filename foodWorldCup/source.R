@@ -1,23 +1,28 @@
-#food world cup analysis
 library(readr)
-foodData <- read.csv('/Users/Abraxas/Documents/analysisPortfolio/foodWorldCup/pythonCleaned.csv')
-colnames(foodData)[c(1, 2, 3, 6, 48)] = c("ID", "Culinary Knowledge", "Culinary Skills", "Australia", "Census Location")
-#amend the ascii error in the levels for Culinary Skills
-levels(foodData[, "Culinary Skills"]) <- c("High", "None", "Low", "Moderate")
-#delete surveyees with no datum
- ###START FROM HERE (i'm trying to delete the surveyees that do not have any value from 4 to 43)
-for ()
-country_names <- names(foodData)[4:43]
-for (name in country_names) {
-  levels(foodData[,name]) <- c(0, 1, 2, 3, 4, 5, NA)
-  foodData[, name] <- as.numeric(as.character(foodData[, name]))
+library(ggplot2)
+foodData <- read.csv('/Users/Abraxas/Documents/analysisPortfolio/foodWorldCup/data/r_cleaned.csv')
+foodData <- data.frame(foodData)
+##national scores with respect to the income leve, culinary knowledge/skills, AND area
+skills <- vector(mode = "numeric", length = 40)
+knowledge <- vector(mode = "numeric", length = 40)
+area <- vector(mode = "numeric", length = 40)
+noAnswer <- vector(mode = "numeric", length = 40)
+for (j in (seq(from = 1, to = nrow(foodData)))) {
+  nullValue = 0
+  for (i in (seq(from = 1, to = ncol(foodData)))) {
+    #treatment of the country score section
+    if (i >= 3 & i <= 42) {
+      if (foodData[j, i] == "N/A" | foodData[j, i] ==  "") {
+        naIsZero = 0
+        noAnswer[i - 2] <- noAnswer[i - 2] + 1
+      }  
+      else {
+        naIsZero = as.numeric(as.character(foodData[j, i]))
+      }      
+      totalScore[i - 2] <- totalScore[i - 2] + naIsZero
+    }
+    if (foodData[j, i] == "N/A" | foodData[j, i] ==  "") nullValue <- nullValue + 1
+  }
+  if (nullValue > 40) foodData <- foodData[-j,]
+  if (max < nullValue) max <- nullValue
 }
-#by now all the factors are now numeric!
-
-
-
-#make ranking
-
-
-#tournament
-sum(foodData[,"Korea"])
