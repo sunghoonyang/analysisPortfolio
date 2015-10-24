@@ -48,12 +48,18 @@ ranking <- merge(tot_scores_country, no_answer, by = "country_names")
 ranking <- ranking[order(ranking$rank),]
 ranking_raw<- ggplot(ranking, aes(totalScore, noAnswer)) +
   geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
+png(paste0("/Users/Abraxas/Documents/analysisPortfolio/foodWorldCup/img/", "total_raw", ".png"))
+print(ranking_raw)
+dev.off()
 #Mexico Italy and States being the highest scoring cuisine makes you wonder about the evenness of the data.
 #lets take a look at unknownness-weighted scores (mean from the people who did rate the food)
 mean_vals <- vector(mode = "numeric", length = 40)
 mean_vals <- totalScore / (1282 - noAnswer)
 mean_ranking <- data.frame(country = country_names, unknownness = noAnswer, average_score = mean_vals)
 mean_jitter_national <- ggplot(mean_ranking, aes(mean_vals, noAnswer)) + geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
+png(paste0("/Users/Abraxas/Documents/analysisPortfolio/foodWorldCup/img/", "total_mean", ".png"))
+print(ranking_raw)
+dev.off()
 x-test-raw <- chisq.test(ranking[,2:3])
 x-test-mean <- chisq.test(mean_ranking[,2:3])
 #positive association between reknownness and mean score.... At this point I'm starting to think this is 
