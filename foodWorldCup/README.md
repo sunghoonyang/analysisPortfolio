@@ -35,3 +35,8 @@ The average graph, on the other hand, reveals that the spread is wider than that
 <h4>Jitter graph total score, n = 286</h4>
 <img src = "./img/rich_av.png">
 <h4>Jitter graph of mean score, n = 286</h4>
+<h3>... and the chefs</h3>
+<img src = "./img/rich_raw.png">
+<h4>Jitter graph total score, n = 408</h4>
+<img src = "./img/rich_av.png">
+<h4>Jitter graph of mean score, n = 408</h4>
