@@ -1,7 +1,7 @@
 #food world cup analysis
 library(readr)
 library(ggplot2)
-foodData <- read.csv('/Users/Abraxas/Documents/analysisPortfolio/foodWorldCup/pythonCleaned.csv')
+foodData <- read.csv('/Users/Abraxas/Documents/analysisPortfolio/foodWorldCup/data/pythonCleaned.csv')
 foodData <- data.frame(foodData)
 #correct non-ascii strings
 colnames(foodData)[c(1, 2, 3, 6, 48)] = c("ID", "Culinary Knowledge", "Culinary Skills", "Australia", "Census Location")
@@ -58,7 +58,7 @@ mean_vals <- totalScore / (1282 - noAnswer)
 mean_ranking <- data.frame(country = country_names, unknownness = noAnswer, average_score = mean_vals)
 mean_jitter_national <- ggplot(mean_ranking, aes(mean_vals, noAnswer)) + geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
 png(paste0("/Users/Abraxas/Documents/analysisPortfolio/foodWorldCup/img/", "total_mean", ".png"))
-print(ranking_raw)
+print(mean_jitter_national)
 dev.off()
 x-test-raw <- chisq.test(ranking[,2:3])
 x-test-mean <- chisq.test(mean_ranking[,2:3])
