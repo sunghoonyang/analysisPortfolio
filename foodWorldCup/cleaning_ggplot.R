@@ -3,10 +3,10 @@ library(readr)
 library(ggplot2)
 foodData <- read.csv('/Users/Abraxas/Documents/analysisPortfolio/foodWorldCup/pythonCleaned.csv')
 foodData <- data.frame(foodData)
+#correct non-ascii strings
 colnames(foodData)[c(1, 2, 3, 6, 48)] = c("ID", "Culinary Knowledge", "Culinary Skills", "Australia", "Census Location")
 #amend the ascii error in the levels for Culinary Skills
-levels(foodData[, "Culinary Skills"]) <- c("High", "None", "Low", "Moderate")
-
+levels(foodData[, "Culinary Skills"]) <- c("", "Low", "Moderate", "High")
 #following for loop achieves three things
 # 1. complete totalScore vector which has the total score of each cuisine
 # 2. complete noAnswer which counts the number of people who did not answer
@@ -48,77 +48,60 @@ ranking <- merge(tot_scores_country, no_answer, by = "country_names")
 ranking <- ranking[order(ranking$rank),]
 ranking_raw<- ggplot(ranking, aes(totalScore, noAnswer)) +
   geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
-#Mexico Italy and States being the highest scoring cuisine makes you wonder about
-#the evenness of the data. lets take a look at the sample population's regional backgounr
-#what to do tomorrow: see if you can segment the data by culinary skills, area,and income blahbal
-
-#mean from the people who did rate the food
+#Mexico Italy and States being the highest scoring cuisine makes you wonder about the evenness of the data.
+#lets take a look at unknownness-weighted scores (mean from the people who did rate the food)
 mean_vals <- vector(mode = "numeric", length = 40)
 mean_vals <- totalScore / (1282 - noAnswer)
 mean_ranking <- data.frame(country = country_names, unknownness = noAnswer, average_score = mean_vals)
 mean_jitter_national <- ggplot(mean_ranking, aes(mean_vals, noAnswer)) + geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
-chisq.test(ranking[,2:3])
-chisq.test(mean_ranking[,2:3])
+x-test-raw <- chisq.test(ranking[,2:3])
+x-test-mean <- chisq.test(mean_ranking[,2:3])
 #positive association between reknownness and mean score.... At this point I'm starting to think this is 
 #"American perception of world cuisine" as opposed to food world cup. Let's try segmenting the data
 #lets see if if the people who have reported the highest culinary skills have answered differently
-
-##########################
-#Connoisseur Segmentation#
-##########################
-
-connoisseur <- subset(foodData, foodData[,2] == "High") #turns out no one marked oneself "Advanced"
-totalScore_con <- vector(mode = "numeric", length = 40)
-noAnswer_con <- vector(mode = "numeric", length = 40)
-for (j in (seq(from = 1, to = nrow(connoisseur)))) {
-  for (i in (seq(from = 1, to = ncol(connoisseur)))) {
-    #treatment of the country score section
-    if (i >= 3 & i <= 42) {
-      if (is.na(connoisseur[j, i])) {
-        naIsZero = 0
-        noAnswer_con[i - 2] <- noAnswer_con[i - 2] + 1
-      }  
-      else {
-        naIsZero <- as.numeric(as.character(connoisseur[j, i]))
-      }      
-      totalScore_con[i - 2] <- totalScore_con[i - 2] + naIsZero
+#Segmentation method - pass in new_dt, which is segmented subset!!
+segment_food <- function (new_dt) {
+  scoreBoard <- vector(mode = "numeric", length = 40)
+  unknownness <- vector(mode = "numeric", length = 40)
+  for (j in (seq(from = 1, to = nrow(new_dt)))) {
+    for (i in (seq(from = 1, to = ncol(new_dt)))) {
+      #treatment of the country score section
+      if (i >= 3 & i <= 42) {
+        if (is.na(new_dt[j, i])) {
+          naIsZero = 0
+          unknownness[i - 2] <- unknownness[i - 2] + 1
+        }  
+        else {
+          naIsZero <- as.numeric(as.character(new_dt[j, i]))
+        }      
+        scoreBoard[i - 2] <- scoreBoard[i - 2] + naIsZero
+      }
     }
   }
+  df <- data.frame(country.name = country_names, total.score = scoreBoard, unknownness = unknownness)
+  raw_jitter <- ggplot(df, aes(total.score, unknownness)) + geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
+  mean_vals <- scoreBoard / (nrow(new_dt) - unknownness)
+  mean_df <- data.frame(country = country_names, unknownness = unknownness, average_score = mean_vals)
+  mean_jitter <- ggplot(mean_df, aes(average_score, unknownness)) + geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
+  rv <- list(raw_jitter, mean_jitter)
+  return(rv)
+}
+##############
+#Segmentation#
+##############
+#connoisseur def : reported knowledge is advanced
+connoisseur <- subset(foodData, foodData[,1] == "Advanced") 
+plots <- segment_food(connoisseur)
+#rich def : reported income is >$100,000
+rich <- subset(foodData, foodData[,45] %in% c("$100,000 - $149,999", "$150,000+"))
+plots <- append(plots, segment_food(rich))
+#chef def : reported skill is high
+chef <- subset(foodData, foodData[,2] == "High") #turns out no one marked oneself "Advanced"
+plots <- append(plots, segment_food(rich))
+gg_names <- c("con_raw", "con_av", "rich_raw","rich_av", "chef_raw", "chef_av")
+for (i in 1:6) {
+  png(paste0("/Users/Abraxas/Documents/analysisPortfolio/foodWorldCup/img/", gg_names[i], ".png"))
+  print(plots[i])
+  dev.off()
 }
 
-foodData_con <- data.frame(country.name = country_names, totalScore = totalScore_con, unknownness = noAnswer)
-jitter_raw_con<- ggplot(foodData_con, aes(totalScore, noAnswer)) + geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
-mean_vals_con <- vector(mode = "numeric", length = 40)
-mean_vals_con <- totalScore_con / (408 - noAnswer_con)
-foodData_con_mean <- data.frame(country = country_names, unknownness = noAnswer_con, average_score = mean_vals_con)
-mean_jitter_national_con <- ggplot(foodData_con_mean, aes(mean_vals_con, noAnswer_con)) + geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
-
-#####################################
-#Highest Income Bracket Segmentation#
-#####################################
-#definition of rich is  TRUE %in% (foodData[1, 45] == c("$100,000 - $149,999", "$150,000+"))
-rich <- subset(foodData, foodData[,45] %in% c("$100,000 - $149,999", "$150,000+")) #turns out no one marked oneself "Advanced"
-totalScore_rich <- vector(mode = "numeric", length = 40)
-noAnswer_rich <- vector(mode = "numeric", length = 40)
-for (j in (seq(from = 1, to = nrow(rich)))) {
-  for (i in (seq(from = 1, to = ncol(rich)))) {
-    #treatment of the country score section
-    if (i >= 3 & i <= 42) {
-      if (is.na(rich[j, i])) {
-        naIsZero = 0
-        noAnswer_rich[i - 2] <- noAnswer_rich[i - 2] + 1
-      }  
-      else {
-        naIsZero <- as.numeric(as.character(rich[j, i]))
-      }      
-      totalScore_rich[i - 2] <- totalScore_rich[i - 2] + naIsZero
-    }
-  }
-}
-
-foodData_rich <- data.frame(country.name = country_names, totalScore = totalScore_rich, unknownness = noAnswer)
-jitter_raw_rich<- ggplot(foodData_rich, aes(totalScore, noAnswer)) + geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
-mean_vals_rich <- vector(mode = "numeric", length = 40)
-mean_vals_rich <- totalScore_rich / (408 - noAnswer_rich)
-foodData_rich_mean <- data.frame(country = country_names, unknownness = noAnswer_rich, average_score = mean_vals_rich)
-mean_jitter_national_rich <- ggplot(foodData_rich_mean, aes(mean_vals_rich, noAnswer_rich)) + geom_jitter() + geom_text(aes(label=country_names),hjust=0, vjust=0)
