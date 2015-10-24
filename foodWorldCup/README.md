@@ -18,6 +18,8 @@ I am also deleting the respondent with 40 or more missing answers, because these
 <center><h4>Jitter graph of n = 1282</h4><br></center>
 exhibits an obvious inverse relationship. The more reknown the cuisine is, the higher the raw score, and lower the unknownness. We can also see that there is a gap between Cuban/Vietnamese cuisines and the other cuisines in the right-bottom corner of the graph. In this region we find all the cuisines that are perhaps more familiar to Americans - Irish, Spanish to Mexican and Italian. This suggests a confounding error we may commit should we take it to the face value the observations from the graph. This is because the graph may be severly swayed by the taste-buds of Americans only. (maybe I see this as a source of error because I'm not American) Let us look at the graph where we plot unknownness vs. average score. Average score is calculated by dividing total score gained by each country by the number of respondents that gave a score to a respective cuisine.
 <center><img src = "./img/total_mean.png"></center>
-<center><h4>Jitter graph (mean score) of n = 1282</h4></center>
+<h4><center>Jitter graph (mean score) of n = 1282</center></h4>
+The above graph shows that if we weight the total score by the number of respondents, the cuisines such as English, German, and Russian slide to the left. This is because even though Americans are rather familiar with these cuisines, they are also known to be less tasty cuisines compared to the likes of Mexican, Chinese, and Italian. The countries that stay in bottom_right corner in this graph as well are the cuisines that we may have guessed: Japanese, Greek, French, Chinese, Mexican, Italian, followed by lesser-known, yet equally high-scoring Thai and Spanish cuisines.
+
 
 
