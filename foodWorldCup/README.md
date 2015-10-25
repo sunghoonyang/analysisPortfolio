@@ -1,9 +1,6 @@
 <h1>Food World Cup</h1>
-Hello world! this is my sample data analysis. Data is from fivethirtyeight.com. This analysis covers 3 actions <br>
-1. Data cleaning <br>
-2. Segmentation <br>
-3. Visualisation <br>
-
+<h2>Abstract</h2>
+<p>data analysis & visualisation of the data "food-world-cup", provided as an open-source data set by fivethrityeight.com. The plotted figures show that there exists almost linear inverse relationship between obscurity of a cuisine and its popularity. Upon segmentation with 3 dimensions - income, culinary skills/knowledge - we can see from the graphs there exist three different groups cuisines - absolutely unknown regional (Cameroon, Croatia), cuisines relatively relatable for Americans. This is corroborated by the concentration of Latin American cuisines in this group. The last groups are the qualifiers for the knock out rounds, the popular cuisines of Japan and Spain to Italy and Mexican.</p>
 <h2>Python Cleaner</h2>
 Python cleaner reads in the file, changes the each column's header question for the country cuisine to simply the country name. <br>
 <center>"Please rate how much you like the traditional cuisine of (name)." => "(name)"</center><br><br>
