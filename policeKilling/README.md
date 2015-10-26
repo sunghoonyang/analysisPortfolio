@@ -5,3 +5,5 @@
 <img src = "./img/us_map_by_crime.png">
 <h3>Turf war - save whites</h3>
 <p>Hispanic/Latino police killings most seen in the south, black deaths are concentrated in the Eastern half. White deaths are the only prevalent one throughout the states for the obvious reason that they form the majority of the population. </p>
+
+<br>for more information, email me at sunghoonyang@berkeley.edu
