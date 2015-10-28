@@ -28,3 +28,6 @@ df$status[df$status == "Widowed" |df$status == "Separated" |df$status == "Divorc
 df$duration <- as.factor(df$duration)
 levels(df$duration) <- c("NA", "<5", "<15", "<20", "<10", "<1", "20<")
 df$duration <- factor(df$duration, levels(df$duration)[c(1,6,2,5,3,4,7)])
+df$income <- as.factor(df$income)
+levels(df$income) <- c("NA", "<25k", "<150k", "150k<", "<50k", "<100k")
+df$income <- factor(df$income, levels(df$income)[c(1,2,5,6,3,4)])
