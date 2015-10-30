@@ -31,3 +31,15 @@ df$duration <- factor(df$duration, levels(df$duration)[c(1,6,2,5,3,4,7)])
 df$income <- as.factor(df$income)
 levels(df$income) <- c("NA", "<25k", "<150k", "150k<", "<50k", "<100k")
 df$income <- factor(df$income, levels(df$income)[c(1,2,5,6,3,4)])
+
+#people who sleep with the partners seperately everyday
+noSuccess <- subset(df, df[,"freqSeperate"] == "Every night" | df[,"freqSeperate"] = "A few times per week")
+#count vs. their age
+ggplot(noSuccess, aes(noSuccess$age)) + 
+  geom_histogram() +
+  ggtitle("Age distribution for people who sleep on\n seperate beds at least few times per week")
+#mosaic of income vs. gender
+Never <- subset(df, df[,"freqSeperate"] == "Never")
+ggplot(Never, aes(Never$age)) + 
+  geom_histogram() +
+  ggtitle("Age distribution for people who sleep together")
