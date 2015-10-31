@@ -1,13 +1,15 @@
 <h1>Are You Sleeping Alone?</h1>
-<h3>Understanding the Population</h3>
+<h2>Understanding the Population</h2>
+<img src = "./img/ageVSintimacy.png">
+<h4>Age vs. Sleeping Intimacy</h4>
+<p>counts of respondents by age group bins. Bars are divided by the varying frequencies of sleeping separately</p>
 <img src = "./img/mosaic_status_income.png">
 <h4>Marriage Status vs. Household Income</h4>
+<p>Married couple seem to be financially better-off. They are older than both groups that are in and out of relationship, and thus make more money - <i>circle of life</i></p>
 <img src = "./img/mosaic_status_duration.png">
 <h4>Marriage Status vs. Length of Relationship</h4>
-<p>Married couples exhibit longer duration of marriage. DUH. So if "in a relationship" people's data would be more revealing if we compare it to that of "out of relationship" people, if we pivot around duration
+<p>The striking is not saying much - married couples exhibit longer duration of marriage. Among the people who are currently out of relationship, the  majority of them have recorded relationship duration being shorter than 5 years, and people who are now out of relationship and had one lasting over 10 years are much fewer than those of other two status segments.</p>
 <img src = "./img/everyNight_incomeVSgender.png">
 <h4>Income Gender mosaic for people who sleep seperately everyday</h4>
 <img src = "./img/Never_incomeVSgender.png">
 <h4>Income Gender mosaic for people who never sleep seperately</h4>
-<img src = "./img/ageVSintimacy.png">
-<h4>Age vs. Sleeping Intimacy</h4>
