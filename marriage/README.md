@@ -10,7 +10,7 @@
 <h4>Marriage Status vs. Length of Relationship</h4>
 <p>The striking is not saying much - married couples exhibit longer duration of marriage. Among the people who are currently out of relationship, the  majority of them have recorded relationship duration being shorter than 5 years, and people who are now out of relationship and had one lasting over 10 years are much fewer than those of other two status segments.</p>
 
-<p>Below are two mosaics comparing female male incomes for the respondents who answered that they sleep each day seperately and together respective.
+<p>Below are two mosaics comparing female male incomes for the respondents who answered that they sleep each day seperately and together respectively. </p>
 <img src = "./img/EN_incomeVSgender.png">
 <h4>Income Gender mosaic for people who sleep seperately everyday</h4>
 <img src = "./img/Never_incomeVSgender.png">
