@@ -103,7 +103,7 @@ rich <- subset(foodData, foodData[,45] %in% c("$100,000 - $149,999", "$150,000+"
 plots <- append(plots, segment_food(rich))
 #chef def : reported skill is high
 chef <- subset(foodData, foodData[,2] == "High") #turns out no one marked oneself "Advanced"
-plots <- append(plots, segment_food(rich))
+plots <- append(plots, segment_food(chef))
 gg_names <- c("con_raw", "con_av", "rich_raw","rich_av", "chef_raw", "chef_av")
 for (i in 1:6) {
   png(paste0("/Users/Abraxas/Documents/analysisPortfolio/foodWorldCup/img/", gg_names[i], ".png"))

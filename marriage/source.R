@@ -51,6 +51,8 @@ EveryNight <- subset(EveryNight, EveryNight[, "gender"] != "")
 EveryNight <- subset(EveryNight, EveryNight[, "income"] != "NA")
 Never <- drop.levels(Never) 
 EveryNight <- drop.levels(EveryNight) 
+Never$income <- factor(Never$income, levels(Never$income)[c(2,3,4,5,1)])
+EveryNight$income <- factor(EveryNight$income, levels(EveryNight$income)[c(2,3,4,5,1)])
 mosaic(~ gender + income, Never)
 mosaic(~ gender + income, EveryNight)
 
@@ -62,3 +64,6 @@ ggplot(totalResponse, aes(totalResponse$age, fill = totalResponse$freqSeperate))
   guides(fill=guide_legend(reverse=TRUE)) +
   ggtitle("Age versus sleeping intimacy")
 
+
+#TODO tomorrow: count booleans answers to the specific reasons for sleeping on seperate beds,
+#and use apply to do some things
